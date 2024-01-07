@@ -117,6 +117,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseSwagger();
@@ -137,10 +138,16 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 app.MapControllers();
-
+app.UseRouting(); 
 app.UseCors(builder => builder
    .AllowAnyHeader()
    .AllowAnyMethod()
    .AllowAnyOrigin()
 );
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
 app.Run();
