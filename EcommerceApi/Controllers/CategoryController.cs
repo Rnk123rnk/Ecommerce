@@ -98,6 +98,12 @@ namespace EcommerceApi.Controllers
         {
             try
             {
+                string imageFolderPath = Path.Combine(_webHostEnvironment.ContentRootPath, "Images");
+
+                if (!Directory.Exists(imageFolderPath))
+                {
+                    Directory.CreateDirectory(imageFolderPath);
+                }
                 var category = new Category
                 {
                     CategoryId = Convert.ToInt32(categoryImageDTO.CategoryId),
